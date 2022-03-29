@@ -35,18 +35,22 @@ export class AppComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     this.map.setTarget("map");
-    this.squareOnMap(8.8251100, 45.8205800);
-    this.addText('hello', 8.8251100, 45.8205800);
 
+    // Quadrato più testo a varese
+    this.squareOnMap(8.8251100, 45.8205800);
+    this.addText('Varese', 8.8251100, 45.8205800);
+
+    // Quadrato più testo in libria somewhere 
     this.squareOnMap(8.8251100, 35.8005800);
-    this.addText('world', 8.8251100, 35.8005800);
+    this.addText('Libia', 8.8251100, 35.8005800);
   }
 
   /**non funziona, capire perchè */
   addText(word: string, lat, lon) {
     const text = document.getElementById('text').cloneNode() as HTMLElement;
-    // text.innerText = word;
-    console.log(text)
+    text.innerText = word
+
+    // Creo un livello e provo ad inserivi su testo
     const overlay = new Overlay({
       position: fromLonLat([lat, lon]),
       element: text
