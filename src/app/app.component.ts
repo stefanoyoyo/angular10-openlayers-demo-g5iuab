@@ -6,6 +6,8 @@ import TileLayer from "ol/layer/Tile";
 import View from "ol/View";
 import Overlay from "ol/Overlay";
 import {fromLonLat, toLonLat} from 'ol/proj';
+import { FigureService } from "./services/figure.service";
+import { HtmlService } from "./services/html.service";
 // import * as ol from 'ol';square
 
 @Component({
@@ -17,7 +19,7 @@ export class AppComponent implements AfterViewInit {
   name = "Angular " + VERSION.major;
   map: Map;
 
-  constructor() {
+  constructor(public figure: FigureService, public html: HtmlService) {
     this.map = new Map({
       layers: [
         new TileLayer({
@@ -26,7 +28,7 @@ export class AppComponent implements AfterViewInit {
       ],
       view: new View({
         center: fromLonLat([8.8251100, 45.8205800]),
-        zoom: 10
+        zoom: 5
       })
     });
 
@@ -45,27 +47,27 @@ export class AppComponent implements AfterViewInit {
     this.addText('Libia', 8.8251100, 35.8005800);
   }
 
-  /**non funziona, capire perchè */
-  addText(word: string, lat, lon) {
-    const text = document.getElementById('text').cloneNode() as HTMLElement;
-    text.innerText = word
+  /**Adding text on map at the specified lat and lon */
+  addText(word: string, lat: number, lon: number) {
+    const textEl = this.html.getParagraph(word);
+    textEl.style.transform = 'translate(0%, -100%)';
+    textEl.style.color = '#0000FF'
 
     // Creo un livello e provo ad inserivi su testo
     const overlay = new Overlay({
       position: fromLonLat([lat, lon]),
-      element: text
+      element: textEl
     });
-    this.map.addOverlay(overlay);
+    this.map.addOverlay(overlay); 
   }
 
 
   squareOnMap(lat: number, lon: number) {
-    const square = document.getElementById('square').cloneNode();
+    const square = this.figure.getFigure('square')
     const pos = fromLonLat([lat, lon]);
 
     // Aggiungo testo al quadrato. 
-    const p = document.createElement('p')
-    p.innerText = 'Text in square.'
+    const p =  this.html.getParagraph('Text in square.')
     square.appendChild(p);
 
     // creo il livello dove inserisco il quadrato
@@ -77,5 +79,7 @@ export class AppComponent implements AfterViewInit {
     // Aggiungo il quadrato
     this.map.addOverlay(overlay);
   }
+
+
 
 }
