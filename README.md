@@ -21,7 +21,7 @@ metodo appendChild.
 Se non facessi così, mi verrebbe complicato mostrare il testo al centro
 del quadrato ad esempio.
 Il processo da seguireè il seguente:
-• creare una mappa
-• Creare un oggetto della classe Overlay
-• specifica del codice html da mostrare (campo element)
-• specifica della posizione (campo position)
+ • creare una mappa
+ • Creare un oggetto della classe Overlay
+ • specifica del codice html da mostrare (campo element)
+ • specifica della posizione (campo position)
