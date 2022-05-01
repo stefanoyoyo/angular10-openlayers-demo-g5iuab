@@ -61,7 +61,7 @@ export class AppComponent implements AfterViewInit {
     this.map.addOverlay(overlay); 
   }
 
-
+  /** Aggiunta di un livello alla mappa contenente un quadrato. */
   squareOnMap(lat: number, lon: number) {
     const square = this.figure.getFigure('square')
     const pos = fromLonLat([lat, lon]);
