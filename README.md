@@ -18,8 +18,10 @@ al suo intenro, evitando di aggiungere un Overlat per il quadrato
 ed uno per il testo: è possibile aggiungere un solo Overlay che
 mostri il quadrato ed il testo al suo interno. Lo faccio usando il
 metodo appendChild.
+Se non facessi così, mi verrebbe complicato mostrare il testo al centro
+del quadrato ad esempio.
 Il processo da seguireè il seguente:
 • creare una mappa
 • Creare un oggetto della classe Overlay
-  • specifica del codice html da mostrare (campo element) 
-  • specifica della posizione (campo position)
+• specifica del codice html da mostrare (campo element)
+• specifica della posizione (campo position)
